@@ -3,7 +3,7 @@ import './ProductList.css';
 import ProductItem from "../ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram";
 import { useCallback, useEffect } from "react";
-
+import axios from 'axios';
 const products = [
     { id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые' },
     { id: '2', title: 'Куртка', price: 12000, description: 'Зеленого цвета, теплая' },
@@ -33,13 +33,19 @@ const ProductList = () => {
         }
         try {
             alert(JSON.stringify(data))
-            fetch('http://188.93.210.188:8300/web-data', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            }).then((res) => alert(`${res}, queryId: ${queryId}`)).catch((err) => alert(`${err}, queryId: ${queryId}`))
+            axios
+                .post('http://188.93.210.188:8300/web-data', {
+                    title: "Title of post",
+                    body: JSON.stringify(data)
+                })
+                .then((res) => alert(`${res}, queryId: ${queryId}`)).catch((err) => alert(`${err}, queryId: ${queryId}`))
+            // fetch('http://188.93.210.188:8300/web-data', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(data)
+            // }).then((res) => alert(`${res}, queryId: ${queryId}`)).catch((err) => alert(`${err}, queryId: ${queryId}`))
         } catch (e) {
             alert(`catch ${e}`)
         }
