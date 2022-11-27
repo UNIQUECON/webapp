@@ -32,6 +32,7 @@ const ProductList = () => {
             queryId,
         }
         try {
+            alert(data)
             fetch('http://188.93.210.188:8300/web-data', {
                 method: 'POST',
                 headers: {
