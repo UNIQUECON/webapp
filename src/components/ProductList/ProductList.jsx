@@ -31,13 +31,18 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        fetch('http://188.93.210.188:8000/web-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        }).then((res) => alert(res, queryId)).catch((err) => alert(`${err}, queryId: ${queryId }`))
+        try {
+            fetch('http://188.93.210.188:8000/web-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            }).then((res) => alert(`${res}, queryId: ${queryId}`)).catch((err) => alert(`${err}, queryId: ${queryId}`))
+        } catch (e) {
+            alert(`catch ${e}`)
+        }
+
     }, [addedItems])
 
     useEffect(() => {
