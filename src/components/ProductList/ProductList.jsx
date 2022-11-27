@@ -31,8 +31,7 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        tg.sendData(JSON.stringify(data));
-        fetch('http://localhost:8000/web-data', {
+        fetch('http://188.93.210.188/:8000/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
