@@ -37,7 +37,7 @@ const ProductList = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        }).then((res) => alert(res)).catch((err) => alert(err))
+        }).then((res) => alert(res, queryId)).catch((err) => alert(err, queryId))
     }, [addedItems])
 
     useEffect(() => {
