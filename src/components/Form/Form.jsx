@@ -8,14 +8,14 @@ const Form = () => {
     const [subject, setSubject] = useState('physical');
     const {tg} = useTelegram();
 
-    const onSendData = useCallback(() => {
-        const data = {
-            country,
-            street,
-            subject
-        }
-        tg.sendData(JSON.stringify(data));
-    }, [country, street, subject])
+    // const onSendData = useCallback(() => {
+    //     const data = {
+    //         country,
+    //         street,
+    //         subject
+    //     }
+    //     tg.sendData(JSON.stringify(data));
+    // }, [country, street, subject])
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
@@ -31,11 +31,11 @@ const Form = () => {
     }, [])
 
     useEffect(() => {
-        if(!street || !country) {
-            tg.MainButton.hide();
-        } else {
+        // if(!street || !country) {
+        //     tg.MainButton.hide();
+        // } else {
             tg.MainButton.show();
-        }
+        // }
     }, [country, street])
 
     const onChangeCountry = (e) => {
@@ -48,6 +48,15 @@ const Form = () => {
 
     const onChangeSubject = (e) => {
         setSubject(e.target.value)
+    }
+
+    const sendClicked = () => {
+        const data = {
+            country,
+            street,
+            subject
+        }
+        tg.sendData(JSON.stringify(data));
     }
 
     return (
@@ -71,6 +80,7 @@ const Form = () => {
                 <option value={'physical'}>Физ. лицо</option>
                 <option value={'legal'}>Юр. лицо</option>
             </select>
+            <bitton onClick={sendClicked}>SEND</bitton>
         </div>
     );
 };
