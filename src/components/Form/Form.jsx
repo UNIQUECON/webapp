@@ -10,12 +10,14 @@ const Form = () => {
     const { tg, queryId } = useTelegram();
 
     const onSendData = useCallback(() => {
+
         const data = {
             queryId,
             country,
             street,
             subject
         }
+        alert(JSON.stringify(data))
         fetch('https://188.93.210.188:3089/web-data', {
             method: 'POST',
             headers: {
