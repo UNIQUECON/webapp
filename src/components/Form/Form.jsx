@@ -8,12 +8,13 @@ const Form = () => {
     const [street, setStreet] = useState('');
     const [clicked, setClicked] = useState(false);
     const [subject, setSubject] = useState('physical');
-    const { tg, queryId } = useTelegram();
+    const { tg, queryId, user } = useTelegram();
 
     const onSendData = useCallback(() => {
 
         const data = {
             queryId: `${queryId}`,
+            user_id: user.id,
             country,
             street,
             subject
