@@ -25,8 +25,8 @@ const Form = () => {
             },
             title: "Title of post",
             body: JSON.stringify(data)
-        }).then(res => alert(JSON.stringify(res)))
-        .catch(err => alert(JSON.stringify(err)))
+        }).then(res => alert(JSON.stringify(`res: ${res}`)))
+        .catch(err => alert(JSON.stringify(`err: ${err}`)))
     }, [clicked])
 
 
