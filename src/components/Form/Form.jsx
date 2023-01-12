@@ -7,19 +7,17 @@ const Form = () => {
     const [street, setStreet] = useState('');
     const [clicked, setClicked] = useState(false);
     const [subject, setSubject] = useState('physical');
-    const { tg } = useTelegram();
+    const { tg, queryId } = useTelegram();
 
     const onSendData = useCallback(() => {
         const data = {
+            queryId,
             country,
             street,
             subject
         }
         fetch('http://188.93.210.188:3089/web-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            title: "Title of post",
             body: JSON.stringify(data)
         })
     }, [clicked])
