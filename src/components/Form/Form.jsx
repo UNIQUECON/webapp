@@ -22,7 +22,7 @@ const Form = () => {
             },
             body: JSON.stringify(data)
         })
-    }, [addedItems])
+    }, [clicked])
 
 
     const sendClicked = () => {
