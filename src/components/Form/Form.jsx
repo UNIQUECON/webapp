@@ -1,13 +1,13 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './Form.css';
-import {useTelegram} from "../../hooks/useTelegram";
+import { useTelegram } from "../../hooks/useTelegram";
 
 const Form = () => {
     const [country, setCountry] = useState('');
     const [street, setStreet] = useState('');
     const [clicked, setClicked] = useState(false);
     const [subject, setSubject] = useState('physical');
-    const {tg} = useTelegram();
+    const { tg } = useTelegram();
 
     const onSendData = useCallback(() => {
         const data = {
@@ -15,17 +15,24 @@ const Form = () => {
             street,
             subject
         }
-        tg.sendData(JSON.stringify(data));
-    }, [clicked])
-    
-        const sendClicked = () => {
-            const data = {
-                country,
-                street,
-                subject
-            }
-            tg.sendData(JSON.stringify(data));
+        fetch('http://188.93.210.188:8000/web-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+    }, [addedItems])
+
+
+    const sendClicked = () => {
+        const data = {
+            country,
+            street,
+            subject
         }
+        tg.sendData(JSON.stringify(data));
+    }
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
@@ -44,7 +51,7 @@ const Form = () => {
         // if(!street || !country) {
         //     tg.MainButton.hide();
         // } else {
-            tg.MainButton.show();
+        tg.MainButton.show();
         // }
     }, [country, street])
 
@@ -77,11 +84,7 @@ const Form = () => {
                 value={street}
                 onChange={onChangeStreet}
             />
-            <select value={subject} onChange={onChangeSubject} className={'select'}>
-                <option value={'physical'}>Физ. лицо</option>
-                <option value={'legal'}>Юр. лицо</option>
-            </select>
-            <button onClick={() => setClicked(true)}>SEND</button>
+            <button onClick={() => onSendData()}>SEND</button>
         </div>
     );
 };
