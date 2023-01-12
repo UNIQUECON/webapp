@@ -16,7 +16,7 @@ const Form = () => {
             street,
             subject
         }
-        fetch('http://188.93.210.188:3089/web-data', {
+        fetch('https://188.93.210.188:3089/web-data', {
             title: "Title of post",
             body: JSON.stringify(data)
         })
