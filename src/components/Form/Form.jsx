@@ -20,7 +20,7 @@ const Form = () => {
         }
         alert(JSON.stringify(data))
         axios
-        .post('https://188.93.210.188:3089/web-data', {
+        .post('https://unique-con.tech:3089/web-data', {
             title: "Title of post",
             body: JSON.stringify(data)
         })
