@@ -12,7 +12,7 @@ const Form = () => {
     const onSendData = useCallback(() => {
 
         const data = {
-            queryId: queryId,
+            queryId: `${queryId}`,
             country,
             street,
             subject
@@ -25,7 +25,8 @@ const Form = () => {
             },
             title: "Title of post",
             body: JSON.stringify(data)
-        })
+        }).then(res => alert(JSON.stringify(res)))
+        .catch(err => alert(JSON.stringify(err)))
     }, [clicked])
 
 
