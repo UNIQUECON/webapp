@@ -12,7 +12,7 @@ const Form = () => {
     const onSendData = useCallback(() => {
 
         const data = {
-            queryId,
+            queryId: queryId,
             country,
             street,
             subject
@@ -31,6 +31,7 @@ const Form = () => {
 
     const sendClicked = () => {
         const data = {
+            queryId: queryId,
             country,
             street,
             subject
