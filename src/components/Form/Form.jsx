@@ -18,15 +18,12 @@ const Form = () => {
             subject
         }
         alert(JSON.stringify(data))
-        fetch('https://188.93.210.188:3089/web-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        axios
+        .post('https://188.93.210.188:3089/web-data', {
             title: "Title of post",
             body: JSON.stringify(data)
-        }).then(res => alert(JSON.stringify(`res: ${res}`)))
-        .catch(err => alert(JSON.stringify(`err: ${err}`)))
+        })
+        .then((res) => alert(`${res}, queryId: ${queryId}`)).catch((err) => alert(`${err}, queryId: ${queryId}`)).then(res => alert(JSON.stringify(`res: ${res}`)))
     }, [clicked])
 
 
