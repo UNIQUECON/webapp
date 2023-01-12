@@ -81,7 +81,7 @@ const Form = () => {
                 <option value={'physical'}>Физ. лицо</option>
                 <option value={'legal'}>Юр. лицо</option>
             </select>
-            <bitton onClick={() => setClicked(true)}>SEND</bitton>
+            <button onClick={() => setClicked(true)}>SEND</button>
         </div>
     );
 };
