@@ -19,7 +19,6 @@ const Form = () => {
             street,
             subject
         }
-        alert(JSON.stringify(data))
         axios
             .post('https://unique-con.tech:3089/web-data', {
                 title: "Title of post",
