@@ -8,7 +8,7 @@ const Form = () => {
     const [street, setStreet] = useState('');
     const [clicked, setClicked] = useState(false);
     const [subject, setSubject] = useState('physical');
-    const { tg, queryId, user } = useTelegram();
+    const { tg, queryId, user, onClose } = useTelegram();
 
     const onSendData = useCallback(() => {
 
@@ -21,11 +21,11 @@ const Form = () => {
         }
         alert(JSON.stringify(data))
         axios
-        .post('https://unique-con.tech:3089/web-data', {
-            title: "Title of post",
-            body: JSON.stringify(data)
-        })
-        .then((res) => alert(`${res}, queryId: ${queryId}`)).catch((err) => alert(`${err}, queryId: ${queryId}`)).then(res => alert(JSON.stringify(`res: ${res}`)))
+            .post('https://unique-con.tech:3089/web-data', {
+                title: "Title of post",
+                body: JSON.stringify(data)
+            })
+            .then((res) => onClose()).catch((err) => alert(`${err}, queryId: ${queryId}`))
     }, [clicked])
 
 
@@ -89,7 +89,6 @@ const Form = () => {
                 value={street}
                 onChange={onChangeStreet}
             />
-            <button onClick={() => onSendData()}>SEND</button>
         </div>
     );
 };
